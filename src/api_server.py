@@ -9,7 +9,7 @@ pipeline = joblib.load(model_path)
 
 app = FastAPI(
     title="CDS Final Project: Decision Tree Prediction API",
-    description="🇺🇦🇺🇦🇺🇦"
+    description="👨‍❤️‍👨👨‍❤️‍👨👨‍❤️‍👨"
 )
 
 class CarFeatures(BaseModel):
