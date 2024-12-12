@@ -17,9 +17,15 @@ class CountryMapper:
         self.__mapper__ = self.get_mapper()
 
     def __getitem__(self, key: str):
+        """
+        Magic method to make class behave as dict
+        """
         return self.__mapper__.get(key.lower().replace("-", " ").replace("š", "s"), np.nan)
 
     def __get_html(self) -> str:
+        """
+        Reguesting endpoint and gathering HTML code
+        """
         try:
             url_request = requests.get(self.url)
             if url_request.status_code == 200:
@@ -28,6 +34,9 @@ class CountryMapper:
             print(e)
 
     def __load_html(self, content: str) -> BeautifulSoup:
+        """
+        Loading HTML to a parser
+        """
         try:
             html_content = BeautifulSoup(content, "lxml")
 
@@ -36,6 +45,9 @@ class CountryMapper:
             print(e)
     
     def get_mapper(self):
+        """
+        Cinstruction mapper for brand: country of origin structure
+        """
         country_table = self.bs.find("table", {"class": "table table-bordered"})
         table_text = [i.text.lower().replace("-", " ").replace("š", "s") for i in country_table.find_all("td")]
         pass

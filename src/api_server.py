@@ -9,7 +9,7 @@ pipeline = joblib.load(model_path)
 
 app = FastAPI(
     title="CDS Final Project: Decision Tree Prediction API",
-    description="👨‍❤️‍👨👨‍❤️‍👨👨‍❤️‍👨"
+    description="Hello class"
 )
 
 class CarFeatures(BaseModel):
@@ -22,7 +22,7 @@ class CarFeatures(BaseModel):
 @app.post("/predict", summary="Make a car price prediction")
 async def predict(car: CarFeatures):
     try:
-        car_data = pd.DataFrame([car.dict()])
+        car_data = pd.DataFrame([car.dict()]) 
         prediction = pipeline.predict(car_data)
         return {"prediction": float(prediction[0])}
     except ValueError as e:

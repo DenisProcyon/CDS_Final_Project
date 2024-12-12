@@ -16,6 +16,9 @@ class DataPlotter:
         )
 
     def plot_barchart(self, data: pd.Series, title: str, xlabel: str, ylabel: str, figsize: tuple = None):
+        """
+        Plots barchart for given parameters
+        """
         plt.figure(figsize=self.default_configs.figsize if figsize is None else figsize)
 
         ax = data.plot(kind='bar', color=self.default_configs.color, edgecolor='black')
@@ -33,6 +36,9 @@ class DataPlotter:
         plt.show()
 
     def plot_numerical_distribution(self, data: pd.DataFrame, columns: list[str]):
+        """
+        Plots numerical distribution
+        """
         fig, axes = plt.subplots(nrows=len(columns), ncols=1, figsize=(self.default_configs.figsize[0], len(columns) * 5))
         axes = axes.flatten() if len(columns) > 1 else [axes]
 
@@ -61,6 +67,9 @@ class DataPlotter:
         plt.show()
 
     def plot_all_categorical(self, data: pd.DataFrame):
+        """
+        Plots districution of categorical columns
+        """
         categorical_columns = data.select_dtypes(include=['object', 'category']).columns
 
         num_cols = len(categorical_columns)
