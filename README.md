@@ -2,15 +2,15 @@
 
 ## Preprocessors Module
 
-Since our pipeine is somewhat custom, this module provides a set of custom **scikit-learn-compatible** transformers designed to prepare and enrich vehicle-related data before it reaches a predictive model. Each transformer is a subclass of `BaseEstimator` and `TransformerMixin`, ensuring seamless integration into sklearn `Pipeline` and `GridSearchCV` workflows.
+Since our pipeine is somewhat custom, this module provides a set of custom **scikit-learn-compatible** transformers designed to prepare vehicle data before it reaches a predictive model. Each transformer is a subclass of `BaseEstimator` and `TransformerMixin`.
 
 ### Overview of Transformers
 
 1. **MetadataAvgTransformer**
-   - **Purpose:** Enriches the dataset with average metadata values (e.g., safety ratings, weights) based on the car's make.
+   - **Purpose:** Enriches the dataset with average metadata values (e.g., safety ratings, weights) based on the car's brand.
    - **Process:**  
      - Uses a global `metadata` DataFrame containing aggregated brand information.
-     - Matches each entry’s `Make` to the averaged columns (`OVERALL_STARS`, `CURB_WEIGHT`, `MIN_GROSS_WEIGHT`) and updates the DataFrame accordingly.
+     - Matches each entry’s `Make` (brand) to the averaged columns (`OVERALL_STARS`, `CURB_WEIGHT`, `MIN_GROSS_WEIGHT`) and updates the DataFrame accordingly.
 
 2. **CountryAssigner**
    - **Purpose:** Determines the country of origin for each car brand.
@@ -62,7 +62,7 @@ predictions = pipeline.predict(X_test)
 
 ## DataPlotter Module
 
-The `DataPlotter` class provides a set of visualization methods for quick exploratory data analysis of both categorical and numerical features. Leveraging **pandas**, **matplotlib**, and **seaborn**, it allows you to easily plot bar charts, distributions of numerical columns, and distributions of categorical columns. It comes with sensible default configurations for styling and layout.
+The `DataPlotter` class provides a set of visualization methods for  exploratory data analysis of both categorical and numerical features. It allows you to easily plot bar charts, distributions of numerical columns, and distributions of categorical columns. It comes with default or custom configurations.
 
 
 ### Methods Overview
@@ -79,7 +79,7 @@ The `DataPlotter` class provides a set of visualization methods for quick explor
 
 2. **`plot_numerical_distribution(data: pd.DataFrame, columns: list[str])`**
    - **Description:**  
-     Plots the distribution (via `seaborn.kdeplot`) of specified numerical columns, helping visualize their spread and shape.
+     Plots the distribution (via `seaborn.kdeplot`) of specified numerical columns.
    - **Usage Example:**
      ```python
      plotter = DataPlotter()
@@ -89,7 +89,7 @@ The `DataPlotter` class provides a set of visualization methods for quick explor
 
 3. **`plot_all_categorical(data: pd.DataFrame)`**
    - **Description:**  
-     Automatically detects and plots the distribution of all categorical columns in the `DataFrame`. Each categorical column is represented by a bar chart of its value counts.
+      Detects and plots the distribution of all categorical columns in the `DataFrame`. Each categorical column is represented by a bar chart of its value counts.
    - **Usage Example:**
      ```python
      plotter = DataPlotter()
@@ -132,7 +132,7 @@ plotter.plot_barchart(condition_counts, title="Condition Distribution", xlabel="
 
 ## CountryMapper Module
 
-The `CountryMapper` class provides a  way to determine the country of origin for various car brands. Given a list of brands and a URL containing a reference table, it scrapes the webpage and constructs a mapping from brand names to countries. With this mapper, you can quickly enrich your dataset by adding a `Country` column based on each car’s `Make`.
+The `CountryMapper` class provides a way to determine the country of origin for various car brands. Given a list of brands and a URL containing a reference table, it scrapes the webpage and constructs a mapping from brand names to countries. 
 
 ## Testing with Pytest
 
