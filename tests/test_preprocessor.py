@@ -38,7 +38,7 @@ def test_metadata_avg_transformer(sample_data, sample_metadata, monkeypatch):
         transformer.fit(sample_data)
         transformed = transformer.transform(sample_data)
 
-        assert all(col in transformed.columns for col in columns), "Не все столбцы средних значений появились"
+        assert all(col in transformed.columns for col in columns), "No avg. values appeared"
 
         ford_data = transformed.loc[transformed["Make"].str.lower() == "ford"].iloc[0]
         assert ford_data["OVERALL_STARS"] == 4.5
