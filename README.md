@@ -1,4 +1,7 @@
-# CDS_Final_Project
+# Python Library Architecture & Deployment
+
+This projects contains the architecture of a library that is scalable and functional for a predictive analytics task. First, we created the skeleton of the library, then, we created the first end-to-end prototype that loads the data, preprocess it, creates features, trains a naive model, performs hyperparameter tuning and evaluates the predictions with some metrics.
+
 
 ## Preprocessors Module
 
